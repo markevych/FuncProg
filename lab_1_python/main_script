@@ -1,0 +1,44 @@
+from operator import itemgetter
+
+
+class Person :
+    def __init__(self, name, age, score):
+        self.name = name
+        self.age = age
+        self.score = score
+
+    def __lt__(self, other):
+        if self.name < other.name : return 1
+        elif self.name > other.name : return -1
+        else :
+            if self.age < other.age:
+                return 1
+            elif self.age > other.age:
+                return -1
+            else:
+                if self.score < other.score:
+                    return 1
+                if self.score > other.score:
+                    return -1
+                else: 0
+
+    def __str__(self):
+        return "Name : " + self.name + "\nAge : " + self.age + "\nScore : " + self.score + "\n"
+
+    def __repr__(self):
+        return "\nName : " + self.name + "\nAge : " + self.age + "\nScore : " + self.score + "\n"
+
+def createGroup(list):
+    name = input("Enter the name of person : ")
+    age = input("Enter the age of person : ")
+    score = input("Enter the score of person : ")
+
+    person = Person(name, age, score)
+    list.append(person)
+    answer = input("Do you want to add one more? Type \"Yes\" if answer is positive : ")
+    if answer == "Yes" : createGroup(list)
+
+list = []
+createGroup(list)
+list.sort()
+print(list)
